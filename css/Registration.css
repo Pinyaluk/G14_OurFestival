@@ -59,6 +59,12 @@ label1 {
   font-size: 0.95rem;
 }
 
+#eerrorMessage {
+  color: #d9534f;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
 @media (max-width: 768px) {
   .register-container {
     padding: 30px 20px;
