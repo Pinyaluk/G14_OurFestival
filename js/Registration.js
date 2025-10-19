@@ -45,5 +45,9 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
 
   errorMessage.textContent = "";
   alert("Registration successful!");
-  window.location.href = "register_summary.html";
+  
+  setTimeout(() => {
+     window.location.href = "../html/regis_summary.html";
+  }, 300);
+  
 });
