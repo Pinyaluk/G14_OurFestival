@@ -139,17 +139,47 @@ body {
 }
 
 @media (max-width: 480px) {
-    .login-con {
-        padding: 25px 30px;
-        width: 95%;
-        max-width: 95%;
+  
+  .login-container {
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 20px;
+  }
 
-    }
+  
+  .login-title {
+    font-size: 24px;
+  }
 
-    .login-con h2 {
-        font-size: 26px;
-        
-    }
+  
+  .input-group input {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  
+  .btn-login {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  
+  .forgot-password a,
+  .center-account,
+  .signin-footer {
+    font-size: 12px;
+  }
+
+  .social-icons .icon {
+    width: 35px;
+    height: 35px;
+    padding: 6px;
+  }
+
+ 
+  .social-icons {
+    gap: 15px;
+  }
 }
 
 @media (min-width: 481px) and (max-width: 1024px) {
