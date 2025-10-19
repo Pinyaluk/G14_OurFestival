@@ -9,7 +9,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
   const terms = document.getElementById("terms").checked;
   const errorMessage = document.getElementById("errorMessage");
 
-  // ตรวจสอบอีเมลด้วย Regular Expression
+ 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!firstName || !lastName || !email || !age || !gender || !terms) {
@@ -44,10 +44,26 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
   localStorage.setItem("registrations", JSON.stringify(users));
 
   errorMessage.textContent = "";
-  alert("Registration successful!");
-  
-  setTimeout(() => {
-     window.location.href = "../html/regis_summary.html";
-  }, 300);
+
+
+  const notice = document.createElement("div");
+notice.textContent = "Registration successful! ";
+notice.style.position = "fixed";
+notice.style.top = "20px";
+notice.style.left = "50%";
+notice.style.transform = "translateX(-50%)";
+notice.style.background = "#4caf50";
+notice.style.color = "white";
+notice.style.padding = "10px 20px";
+notice.style.borderRadius = "8px";
+notice.style.fontWeight = "600";
+notice.style.zIndex = "9999";
+document.body.appendChild(notice);
+
+
+setTimeout(() => {
+  notice.remove();
+  window.location.href = "../html/regis_summary.html";
+}, 1000);
   
 });

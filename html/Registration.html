@@ -14,58 +14,48 @@
   <div class="register-container">
     <h2>Register</h2>
 
-    <form id="registerForm">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="firstName">First name</label>
+    <form id="registerForm" novalidate>
+      <div class="row g-3">
+        <div class="col-md-6 col-12">
+          <label for="firstName" class="form-label">First name</label>
           <input type="text" id="firstName" class="form-control" required>
         </div>
-        <div class="col-md-6 mb-3">
-          <label for="lastName">Last name</label>
+        <div class="col-md-6 col-12">
+          <label for="lastName" class="form-label">Last name</label>
           <input type="text" id="lastName" class="form-control" required>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="email">E-mail</label>
+        <div class="col-md-6 col-12">
+          <label for="email" class="form-label">E-mail</label>
           <input type="email" id="email" class="form-control" required>
         </div>
-        <div class="col-md-6 mb-3">
-          <label for="age">Age</label>
+        <div class="col-md-6 col-12">
+          <label for="age" class="form-label">Age</label>
           <input type="number" id="age" class="form-control" min="1" max="120" required>
         </div>
-      </div>
 
-      <div class="row mb-3">
         <div class="col-12">
-          <label-center>Gender</label-center>
-          <div class="d-flex justify-content-center gap-4 mt-2">
-            <div>
-              <input type="radio" name="gender" id="male" value="Male" required>
-              <label for="male">Male</label>
-            </div>
-            <div>
-              <input type="radio" name="gender" id="female" value="Female" required>
-              <label for="female">Female</label>
-            </div>
-            <div>
-              <input type="radio" name="gender" id="other" value="Other" required>
-              <label for="other">Other</label>
-            </div>
+          <label class="form-label d-block text-center">Gender</label>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <div><input type="radio" name="gender" id="male" value="Male" required> <label for="male">Male</label></div>
+            <div><input type="radio" name="gender" id="female" value="Female" required> <label for="female">Female</label></div>
+            <div><input type="radio" name="gender" id="other" value="Other" required> <label for="other">Other</label></div>
           </div>
         </div>
-      </div>
 
-      <div class="form-check text-start mb-3">
-        <input class="form-check-input" type="checkbox" id="terms" required>
-        <label class="form-check-label" for="terms">
-          I accept the terms and conditions to join the event.
-        </label>
-      </div>
+        <div class="col-12 form-check text-start mt-3">
+          <input class="form-check-input" type="checkbox" id="terms" required>
+          <label class="form-check-label" for="terms">
+            I accept the terms and conditions to join the event.
+          </label>
+        </div>
 
-      <button type="submit" class="btn btn-warning w-50 mt-3">Sign up</button>
-      <p id="errorMessage" class="text-danger mt-2"></p>
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-warning mt-3 px-5">Sign up</button>
+        </div>
+
+        <p id="errorMessage" class="text-danger mt-2 text-center"></p>
+      </div>
     </form>
   </div>
 
