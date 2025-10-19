@@ -37,38 +37,37 @@ h2 {
 }
 
 
+
+@media (max-width: 768px) {
+  .register-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+
 @media (max-width: 480px) {
-  
-    .login-con {
-        padding: 20px 30px;
-        width: 90%;
-        max-width: 400px;
-    }
+  .register-container {
+    padding: 15px;
+  }
 
-    .login-con h2 {
-        font-size: 24px;
-        
-    }
-}
+  table {
+    font-size: 0.8rem;
+  }
 
-@media (min-width: 481px) and (max-width: 1024px) {
-    .login-con {
-        padding: 30px 40px;
-        width: 90%;
-        max-width: 700px;
-    }
-
-    .login-con h2 {
-        font-size: 30px;
-        
-    }
-}
-
-@media (min-width: 1025px) {
-    .login-con {
-        padding: 40px 60px;
-        width: 90%;
-        max-width: 800px;
-    }
-
+  th, td {
+    padding: 6px;
+  }
 }
