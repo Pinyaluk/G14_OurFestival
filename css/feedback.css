@@ -19,13 +19,13 @@ font-family:"IBM Plex Sans Thai",system-ui,-apple-system,Segoe UI,Roboto,Arial
    padding:0 18px}
 
 .title{margin:0 10px 18px;
- font-size:32px; font-weight:700;color:#f5b600;letter-spacing:.5px}
+ text-align: center ;font-size:32px; font-weight:700;color:#f5b600;letter-spacing:.5px}
 .card{
  background:var(--card);
   border-radius:24px;
 padding:22px;
  box-shadow:var(--ring);
-border:1px solid #eceff4}
+border: 1px solid #eceff4}
 
 .label{
  display:block; margin:6px 8px 6px;
@@ -33,14 +33,14 @@ border:1px solid #eceff4}
 }
 
 .input{
-width:100%;
+width :100%;
  border:1.5px solid #e5e7eb;
  background:#fff;
  border-radius:14px; padding:12px 14px;
  font:inherit; outline:none }
 
 .input:focus{ border-color:#a5b4fc;
- box-shadow:0 0 0 3px rgba(99,102,241,.15) }
+ box-shadow:0 0 0 3px rgba(99,102 ,241,.15) }
 
 .input.name{ border-radius:999px; max-width:360px }
 .input.msg{ min-height:160px;
@@ -49,11 +49,11 @@ resize:vertical;
 
 .stars-row{
 display:flex;align-items:center;
- gap:10px; margin:16px 6px
+ gap : 10px; margin:16px 6px
 }
 .stars{ position:relative;
- user-select:none; cursor:pointer;
- font-size:38px; line-height:1; letter-spacing:6px }
+ user-select: none; cursor:pointer;
+ font-size :38px; line-height:1; letter-spacing:6px }
 
 .stars .bg{color:#cbd5e1}
 .stars .fill{
@@ -62,19 +62,20 @@ display:flex;align-items:center;
  width:0%; overflow:hidden; white-space:nowrap;
  pointer-events:none }
 
-.score{ color:var(--muted);
+.score{ color:var (--muted);
  font-size:14px }
 
 .actions{display:flex;
  justify-content:space-between;
-align-items:center; margin-top:16px}
+align-items :center; 
+margin-top:16px}
 
 .btn{
 border:0;
  padding:12px 18px;
  border-radius:14px; font-weight:700;
 cursor:pointer; color:#fff;
-min-width:110px}
+min-width: 110px}
 
 .submit{background:var(--primary)}
 .clean{

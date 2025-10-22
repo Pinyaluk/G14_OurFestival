@@ -9,7 +9,7 @@ let v=0
 
 function  rate(x){
  const rect=s.getBoundingClientRect()
- let p=x-rect.left; if(p<0)p=0; if(p>rect.width)p=rect.width
+let p=x-rect.left; if(p<0)p=0; if(p>rect.width)p=rect.width
  v=Math.round((p/rect.width*5)*2)/2
 
  f.style.width=(v/5*100)+'%'
@@ -20,7 +20,7 @@ s.addEventListener('click',e=>{ rate(e.clientX) })
 
 document.getElementById('btnClean').onclick=()=>{
 document.getElementById('name').value=''
- document.getElementById('message').value=''
+ document.getElementById('message ').value=''
  rate(0)
  localStorage.removeItem('ourFestival.reviews.v1')
 }
@@ -33,6 +33,7 @@ document.getElementById('feedbackForm').onsubmit=e=>{
 
  if(!m){alert('กรุณาพิมพ์ข้อความ');return}
  let k='ourFestival.reviews.v1'
+
  let a=JSON.parse(localStorage.getItem(k)||'[]')
  a.unshift({n,m,v,ts:Date.now()})
  
