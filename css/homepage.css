@@ -38,14 +38,14 @@ body {
 }
 .head .menupoint{
     display: flex;
-    margin-left: auto;
     list-style: none;
     align-items: center;
-    padding-left: 2rem;
+    margin-right: 80px;
+    margin-left: auto;
 }
 
 .head .menupoint li{
-    margin: 0 1rem;
+    margin-left: 30px;
 }
 
 .head .menupoint li a{
@@ -82,14 +82,29 @@ body {
     color: aliceblue;
 }
 
-.head .button {
+.head .five button {
+    padding: 20px 30px;
+    border-radius: 100px;
+    margin-top: auto;
+    font: 1em ;
+    background-color: #f6b100;
+    color: aliceblue;
+    border: none;
     position: absolute;
-    top: 46%;
+    top: 200%;
     left: 50%;
     transform: translate(-50%,-50%);
+    cursor: pointer;
 }
 
-
+.material-symbols-outlined {
+    font-size: 50px;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
 
 
 
