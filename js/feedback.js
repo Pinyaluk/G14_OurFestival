@@ -4,6 +4,7 @@ let s=document.getElementById('stars')
  ,f=document.getElementById('starsFill')
  ,sc=document.getElementById('score')
  ,r=document.getElementById('rating')
+ ,err=document.getElementById('feedbackError')
 
 let v=0
 
@@ -21,25 +22,42 @@ s.addEventListener('click',e=>{ rate(e.clientX) })
 document.getElementById('btnClean').onclick=()=>{
 document.getElementById('name').value=''
  document.getElementById('message ').value=''
+ err.style.display='none'
  rate(0)
  localStorage.removeItem('ourFestival.reviews.v1')
 }
 
 document.getElementById('feedbackForm').onsubmit=e=>{
  e.preventDefault()
+ let n=document.getElementById('name').value.trim()
+let m=document.getElementById('message').value.trim()
+ err.style.display='none'
 
- let n=document.getElementById('name').value.trim()||'Anonymous'
- ,m=document.getElementById('message').value.trim()
+ if(!n){
+   err.textContent='⚠️ Please enter your name.'
+   err.style.display='block'; return
+ }
 
- if(!m){alert('กรุณาพิมพ์ข้อความ');return}
+
+ if(!m){
+   err.textContent='⚠️ Please enter your message.'
+   err.style.display='block'; return
+ }
+ if(v<=0){
+   err.textContent='⚠️ Please give us a star rating.'
+   err.style.display='block'; return
+ }
  let k='ourFestival.reviews.v1'
-
  let a=JSON.parse(localStorage.getItem(k)||'[]')
  a.unshift({n,m,v,ts:Date.now()})
- 
-localStorage.setItem(k,JSON.stringify(a))
- alert('ส่งเรียบร้อยแล้ว ขอบคุณครับ/ค่ะ!')
- e.target.reset();  rate(0)
-}
+ localStorage.setItem(k,JSON.stringify(a))
 
+ err.style.color='#2d7a2d'
+
+ err.textContent='✅ Feedback submitted successfully!'
+ err.style.display='block'
+
+ e.target.reset(); rate(0)
+ setTimeout(()=>{err.style.display='none'},2000)
+}
 })()

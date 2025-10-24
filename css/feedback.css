@@ -81,3 +81,12 @@ min-width: 110px}
 .clean{
  background:var(--danger)
 }
+
+.error-msg {
+  color: #e63946;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 10px;
+  text-align: center;
+  display: none;
+}
