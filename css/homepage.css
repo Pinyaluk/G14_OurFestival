@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Zalando Sans Expanded", sans-serif;
+    font-weight: 600;
+}
+
+body {
+    background-image: 
+    url("../Photo/IMG_2196.JPG");
+    backdrop-filter: 
+    brightness(0.7)
+    sepia(50%)
+    grayscale(0.1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+
+.one{
+    padding: 1rem;
+}
+.two{
+    width: 100%;
+    margin: 0;
+}
+.three{
+    display: flex;
+    justify-content: space-between;
+}
+.logo{
+    font-size: 3rem;
+    color: aliceblue;
+    text-decoration: none;
+}
+.menupoint{
+    display: flex;
+    margin-left: auto;
+    list-style: none;
+    align-items: center;
+    padding-left: 2rem;
+}
+
+.menupoint li{
+    margin: 0 1rem;
+}
+
+.menupoint li a{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.four{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30px;
+    width: 20px;
+}
+
+.five{
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.five h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    color: aliceblue;
+}
+
+.five p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: aliceblue;
+}
+
+.button {
+    position: absolute;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
