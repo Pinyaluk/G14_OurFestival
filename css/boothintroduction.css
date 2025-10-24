@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Candal&family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=Lobster&display=swap');
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #fb6009 !important;
+  font-family: Candal;
+  font-weight: lighter;
+  font-size: 40px !important;
+  margin: 25px;
+}
+
+.frame {
+  width: 900px;
+  height: 500px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px;
+}
+
+.frame.yellow {
+  border: 3px solid #ffb901;
+  background-color: #ffff;
+}
+
+.frame.red {
+  border: 3px solid #db1a1a ;
+  background-color: #ffff;
+}
+
+#myCarousel {
+  width: 400px;
+  height: 250px;
+  border-radius: 25px;
+  overflow: hidden;
+  border: 3px solid #000;
+  margin-bottom: 30px;
+}
+
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+  object-fit: cover;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+
+}
+
+p {
+  text-align: center;
+  font-family: IBM Plex Sans Thai;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+a {
+  background-color: #ffb901;
+  padding: 6px;
+  border-radius: 100px;
+  text-decoration: none !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 40px;
+  
+}
+a p {
+  
+  color: #f4f4f4;
+  margin: 0;
+}
+a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
