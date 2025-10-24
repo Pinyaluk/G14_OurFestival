@@ -16,13 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
       tableBody.appendChild(row);
     });
-  }
-
-  document.getElementById("clearAll").addEventListener("click", () => {
-    if (confirm("Are you sure you want to delete all registration data?")) {
-      localStorage.removeItem("registrations");
-      alert("All registration data deleted.");
-      location.reload();
-    }
-  });
+  } 
 });
+
+
