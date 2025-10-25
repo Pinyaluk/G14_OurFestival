@@ -176,6 +176,61 @@ body {
 #nextBtn { right: 0.5rem; }
 
 
+.viewport {
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+
+.track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  padding-bottom: 1rem;
+}
+
+
+.review-card {
+  flex: 0 0 260px; 
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 16px 32px rgba(0,0,0,.06);
+  padding: 16px 18px 14px 18px;
+  text-align: left;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.review-stars-row {
+  display: flex;
+  align-items: baseline;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #000;
+  font-size: .95rem;
+}
+
+.review-stars-row .stars {
+  font-size: 1rem;
+  line-height: 1;
+  margin-right: 8px;
+  color: #ffb400;
+}
+
+.review-message {
+  color: #333;
+  font-size: .9rem;
+  margin: 0 0 .75rem 0;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.review-name {
+  color: #666;
+  font-size: .8rem;
+  font-weight: 500;
+}
 
 
 
