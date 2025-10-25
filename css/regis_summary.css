@@ -10,6 +10,9 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
+header.navbar{
+  padding: 10px 20px;
+}
 .navbar {
 display: flex;
 justify-content: space-between;
