@@ -142,6 +142,39 @@ body {
 
 
 
+.carousel-area {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 3rem; 
+  box-sizing: border-box;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 999箱子;
+  border: 1px solid #ccc;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+}
+.nav-btn[hidden] { display: none; }
+
+#prevBtn { left: 0.5rem; }
+#nextBtn { right: 0.5rem; }
+
 
 
 
