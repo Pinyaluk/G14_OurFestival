@@ -113,24 +113,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //--Review--//
 
-  const reviewSlider = document.getElementById("reviewSlider");
-  const reviewCards = reviewSlider.querySelectorAll(".review-card");
-  const reviewNextBtn = document.getElementById("slideBtn");
-  let reviewIndex = 0;
+  
+  const LS_KEY = 'ourFestival.reviews.v1';
 
-  function getReviewCardWidth() {
-    const style = getComputedStyle(reviewCards[0]);
-    return reviewCards[0].offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
-  }
+  const avgStarEl = document.getElementById('avgStar');
+  const noReviewEl = document.getElementById('noReview');
 
-  reviewNextBtn.addEventListener("click", () => {
-    const cardWidth = getReviewCardWidth();
-    const cardsPerPage = 4;
-    const maxIndex = reviewCards.length - cardsPerPage;
+  const viewportEl = document.getElementById('reviewViewport');
+  const trackEl = document.getElementById('reviewTrack');
+  const prevBtn = document.getElementById('prevBtn');
 
-    reviewIndex += cardsPerPage;
-    if (reviewIndex > maxIndex) reviewIndex = 0;
+  const nextBtn = document.getElementById('nextBtn');
 
-    reviewSlider.style.transform = `translateX(-${reviewIndex * cardWidth}px)`;
-  });
+  let reviews = [];
+
+
+
 });
