@@ -233,7 +233,12 @@ body {
 }
 
 
-
+.no-review-msg {
+  margin-top: 2rem;
+  font-size: .9rem;
+  color: #777;
+  text-align: center;
+}
 
 
 
