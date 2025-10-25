@@ -113,7 +113,13 @@ body {
 
 
 
-
+.reviews-section {
+  font-family: system-ui, sans-serif;
+  color: #000;
+  text-align: center;
+  margin: 2rem auto 4rem auto;
+  max-width: 1000px;
+}
 
 
 
