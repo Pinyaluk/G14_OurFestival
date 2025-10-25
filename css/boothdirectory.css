@@ -39,6 +39,7 @@ color: #1134e6;
   font-weight: bold;
   font-size: 36px;
   padding: 0 !important;
+  border-radius: 0 !important;
 } 
 
 .nav-desktop {
@@ -176,6 +177,7 @@ font-weight: bold;
 padding: 10px 0;
 width: 100%;
 text-align: center;
+background: none !important;
 }
 
 /* MAIN CONTENT  */
