@@ -96,6 +96,14 @@ body {
 
 .card p {
   margin: 0;
-  color: #f4b400; /* สีดาว */
+  color: #f4b400;
   font-size: 1.2em;
+}
+
+.card h4 {
+  color: #b52e2e;
+}
+
+.card h6 {
+  color: #b2b2b2;
 }
