@@ -127,6 +127,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let reviews = [];
 
+  function loadReviews() {
+    try {
+      reviews = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  
+      if (!Array.isArray(reviews)) reviews = [];
+    } catch (_) {
+      reviews = [];
+    }
+  }
+
+  function formatAvg(value) {
+    return (Math.round(value * 10) / 10).toString().replace(/\.0$/, '');
+
+  }
+
+  function buildStars(score) {
+    const full = Math.floor(score);
+    const half = score - full >= 0.5 ? 1 : 0;
+
+    const empty = 5 - full - half;
+    return '★'.repeat(full) + (half ? '☆' : '') + '☆'.repeat(empty);
+  }
+
 
 
 });
