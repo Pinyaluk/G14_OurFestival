@@ -150,6 +150,63 @@ document.addEventListener("DOMContentLoaded", () => {
     return '★'.repeat(full) + (half ? '☆' : '') + '☆'.repeat(empty);
   }
 
+  function render() {
+
+    if (reviews.length === 0) {
+      avgStarEl.textContent = '0/5';
+    } else {
+      const sum = reviews.reduce((acc, r) => acc + Number(r.v || 0), 0);
+      const avg = sum / reviews.length;
+      avgStarEl.textContent = `${formatAvg(avg)}/5`;
+    }
+
+
+    trackEl.innerHTML = '';
+    if (reviews.length === 0) {
+      noReviewEl.hidden = false;
+    } else {
+      noReviewEl.hidden = true;
+      reviews.forEach((r) => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+
+        const starRow = document.createElement('div');
+        starRow.className = 'review-stars-row';
+        const stars = document.createElement('span');
+        stars.className = 'stars';
+        stars.textContent = buildStars(Number(r.v || 0));
+        const score = document.createElement('span');
+        score.textContent = ` ${r.v}/5`;
+        starRow.appendChild(stars);
+
+
+        
+
+        starRow.appendChild(score);
+
+        const msg = document.createElement('p');
+        msg.className = 'review-message';
+        msg.textContent = r.m || '';
+
+        const name = document.createElement('div');
+        name.className = 'review-name';
+        name.textContent = r.n || 'Anonymous';
+
+        card.appendChild(starRow);
+        card.appendChild(msg);
+        card.appendChild(name);
+        trackEl.appendChild(card);
+
+
+
+
+
+      });
+    }
+
+    updateArrows();
+  }
+
 
 
 });
