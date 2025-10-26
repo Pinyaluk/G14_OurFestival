@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         starRow.appendChild(stars);
 
 
-        
+
 
         starRow.appendChild(score);
 
@@ -205,6 +205,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateArrows();
+  }
+
+  function getStep() {
+    const first = trackEl.querySelector('.review-card');
+    if (!first) return 0;
+
+    const style = getComputedStyle(first);
+    const width = first.getBoundingClientRect().width;
+
+    const gap = parseFloat(getComputedStyle(trackEl).gap || '0');
+    return width + gap;
+  }
+
+
+  
+  function updateArrows() {
+    const canScroll = trackEl.scrollWidth > viewportEl.clientWidth + 1; 
+    if (!canScroll) {
+      prevBtn.hidden = true;
+      nextBtn.hidden = true;
+
+      viewportEl.scrollLeft = 0;
+      return;
+    }
+    prevBtn.hidden = viewportEl.scrollLeft <= 0;
+
+    const maxScroll = trackEl.scrollWidth - viewportEl.clientWidth - 1;
+    nextBtn.hidden = viewportEl.scrollLeft >= maxScroll;
   }
 
 
