@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  
+
   function updateArrows() {
     const canScroll = trackEl.scrollWidth > viewportEl.clientWidth + 1; 
     if (!canScroll) {
@@ -235,6 +235,27 @@ document.addEventListener("DOMContentLoaded", () => {
     nextBtn.hidden = viewportEl.scrollLeft >= maxScroll;
   }
 
+  function scrollByStep(direction) {
+    const step = getStep();
+    if (!step) return;
+    const target = direction > 0
+      ? Math.min(viewportEl.scrollLeft + step, trackEl.scrollWidth)
+      : Math.max(viewportEl.scrollLeft - step, 0);
+    viewportEl.scrollTo({ left: target, behavior: 'smooth' });
+  }
 
+  prevBtn.addEventListener('click', () => scrollByStep(-1));
+  nextBtn.addEventListener('click', () => scrollByStep(1));
+
+  viewportEl.addEventListener('scroll', () => {
+    
+    window.requestAnimationFrame(updateArrows);
+  });
+
+  window.addEventListener('resize', updateArrows);
+
+
+  loadReviews();
+  render();
 
 });
