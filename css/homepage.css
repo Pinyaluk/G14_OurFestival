@@ -764,36 +764,18 @@ body {
 
     /* Footer */
     .footer {
-        flex-direction: column;
-        padding: 20px;
+        padding: 30px 40px;
+        flex-wrap: wrap;
     }
 
     .footer-left,
     .footer-right {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-    }
-
-    .footer-left p {
-        font-size: 12px;
-    }
-
-    .footer-right {
-        font-size: 12px;
-        margin-top: 20px;
+        width: 90%;
+        text-align: left;
     }
 
     .subscribe form {
-        flex-direction: column;
-    }
-
-    .subscribe input[type="email"] {
-        width: 100%;
-    }
-
-    .subscribe button {
-        width: 100%;
+        flex-direction: row;
     }
 }
 
