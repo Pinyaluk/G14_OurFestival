@@ -24,7 +24,6 @@ document.getElementById('name').value=''
  document.getElementById('message ').value=''
  err.style.display='none'
  rate(0)
- localStorage.removeItem('ourFestival.reviews.v1')
 }
 
 document.getElementById('feedbackForm').onsubmit=e=>{
@@ -52,12 +51,6 @@ let m=document.getElementById('message').value.trim()
  a.unshift({n,m,v,ts:Date.now()})
  localStorage.setItem(k,JSON.stringify(a))
 
- err.style.color='#2d7a2d'
-
- err.textContent='✅ Feedback submitted successfully!'
- err.style.display='block'
-
- e.target.reset(); rate(0)
- setTimeout(()=>{err.style.display='none'},2000)
+ window.location.href='/html/homepage.html#reviewsSection'
 }
 })()
