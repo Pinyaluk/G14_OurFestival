@@ -217,7 +217,7 @@ header.navbar {
 }
 
 .hero-content p {
-    font-size: 20px;
+    font-size: 23px;
     margin-bottom: 40px;
 }
 
@@ -363,10 +363,10 @@ header.navbar {
         height: 75vh
     }
     .hero-content h1 {
-        font-size: 40px;
+        font-size: 55px;
     }
     .hero-content p {
-        font-size: 15px;
+        font-size: 20px;
         margin-left: 15px;
         margin-right: 15px;
     }
@@ -730,11 +730,11 @@ body {
         text-align: center;
     }
 
-    .about-text p {
+    .about-text p{
         font-size: 15px;
-        margin-left: 60px;
+        margin-left: 65px;
         margin-right: 50px;
-        text-align: center;
+        text-indent: 20px;
     }
 
     /* Review Slider */
@@ -807,9 +807,8 @@ body {
 
     .about-text p {
         font-size: 17px;
-        margin-left: 0px;
+        margin-left: 20px;
         margin-right: 20px;
-        text-align: center;
     }
 
     .review-card {
