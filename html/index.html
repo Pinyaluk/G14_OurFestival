@@ -11,32 +11,52 @@
 </head>
 
 <body>
-    <header class="head">
-        <section class="one">
-            <header class="two">
-                <nav class="three">
-                    <a href="index.html" class="logo">LOGO</a>
-                    <ul class="menupoint">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Booth</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                    <span class="material-symbols-outlined">menu</span>
-                </nav>
-            </header>
+    <header class="navbar">
+    <div class="logo">
+      <a href="/html/index.html"> Comnival Fair </a>
+    </div>
 
-            <div class="five">
-                <h1>Festival</h1>
-                <p>TEXT TEXT TEXT TEXT TEXT TEXT</p>
-                <button>CLICK HERE</button>
-            </div>
-        </section>
-    </header>
+    <nav class="nav-desktop">
+      <a href="/html/index.html#about">ABOUT</a>
+      <a href="/html/boothdirectory.html">BOOTH</a>
+      <a href="/html/index.html#footer">CONTACT</a>
+    </nav>
+
+    <div class="desktop-menu-icon" id="desktopMenuIcon">&#9776;</div>
+
+    <div class="desktop-dropdown" id="desktopDropdown">
+      <a href="/html/feedback.html">FEEDBACK</a>
+      <a href="/html/regis_summary.html">SUMMARY</a>
+    </div>
+
+
+    <div class="menu-icon" id="menuIcon">&#9776;</div>
+
+     <nav class="nav-mobile" id="navMobile">
+      <a href="/html/index.html#about">ABOUT</a>
+      <a href="/html/boothdirectory.html">BOOTH</a>
+      <a href="/html/index.html#footer">CONTACT</a>
+      <a href="/html/feedback.html">FEEDBACK</a>
+      <a href="/html/regis_summary.html">SUMMARY</a>
+    </nav>
+
+  </header>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Comnival Festival</h1>
+    <p>Complete Entertainment Hub</p>
+    <a href="/html/Registration.html"><button class="class= btn btn-warning mt-3 px-5"> Register Here</button> </a>
+  </div>
+</section>
+         
+    
 
     <!--About-Festival-->
 
-    <header class="content">
-        <section class="ABOUT">
+        <section class="ABOUT" id ="about">
             <section class="slider1">
                 <section class="slides1">
                     <input type="radio" name="radio-btn" id="radio1">
@@ -46,23 +66,23 @@
                     <input type="radio" name="radio-btn" id="radio5">
 
                     <section class="slide first">
-                        <img src="../img/homepage-img/food1.JPG" alt="">
+                        <img src="../img/homepage-img/food1.JPG" alt="food1"> <title>https://www.subway.co.th/</title>
                     </section>
 
                     <section class="slide">
-                        <img src="../img/homepage-img/food2.WEBP" alt="">
+                        <img src="../img/homepage-img/food2.WEBP" alt="food2"> <title>https://www.boostjuicebars.in.th/</title>
                     </section>
 
                     <section class="slide">
-                        <img src="../img/homepage-img/food3.JPG" alt="">
+                        <img src="../img/homepage-img/food3.JPG" alt="food3"> <title></title>
                     </section>
 
                     <section class="slide">
-                        <img src="../img/homepage-img/fashion1.JPG" alt="">
+                        <img src="../img/homepage-img/fashion1.JPG" alt="fashion1"> <title>https://www.viviennewestwood.com/</title>
                     </section>
 
                     <section class="slide">
-                        <img src="../img/homepage-img/fashion2.WEBP" alt="">
+                        <img src="../img/homepage-img/fashion2.WEBP" alt="fashion2"> <title>https://www.ralphlauren.com/</title>
                     </section>
 
                     <section class="navigation-auto">
@@ -85,15 +105,10 @@
 
             <section class="about-text">
                 <h2><b>ABOUT FESTIVAL</b></h2>
-                <p>text text text text text text text text text text text text text text text text text text text text
-                    text
-                    text text text
-                    text text text text text text text text text text text text text text text text text text text text
-                    text
-                    text text text
-                    text text text text text text text text text text text text text text text text text text text text
-                    text
-                    text</p>
+                <p>Get ready for an event collecting ultimate fun and stunning colors, 
+                    with more than 10 amusement rides, countless fashion items and accessories, 
+                    a wide selection of food and various beverages to try, 
+                    and numerous artists all in one place—a one-stop entertainment experience.</p>
             </section>
         </section>
 
@@ -126,7 +141,7 @@
 
         <!--Footer-->
 
-        <footer class="footer">
+        <footer class="footer" id="footer">
             <div class="footer-left">
                 <p>MEMBER : </p>
                 <p> Ashrof Vitheekul - Developers, Software Architect</p>
@@ -161,7 +176,6 @@
                 </div>
             </div>
         </footer>
-    </header>
 
 </body>
 

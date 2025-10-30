@@ -1,5 +1,5 @@
 # G14_OurFestival 
-Natawat Juengrueangsit 6809650036 (Developers and UX/UI Designers)  <br>
+Natawat Juengrueangsit 6809650036 (UX/UI Designers Business Analyst and Product Owner)  <br>
 Phiriyaphon Srikosamard 6809650069 (Team Lead and Scrum Master) <br>
 Ashrof Vitheekul 6809650333 (Developers) <br>
 Chanita Taksanont 6809650382 (Developers) <br>
