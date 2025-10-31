@@ -858,7 +858,7 @@ body {
 }
 
 .manual-btn {
-    border: 2px solid white;
+    border: 0px solid white;
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -1092,7 +1092,7 @@ body {
     height: 30px;
 }
 
-.subscribe form {
+#subscribeForm {
     display: flex;
     gap: 10px;
 }
@@ -1101,7 +1101,6 @@ body {
     padding: 8px 12px;
     border-radius: 5px;
     border: none;
-    flex: 1;
 }
 
 .subscribe button {
@@ -1190,15 +1189,28 @@ body {
         flex-wrap: wrap;
     }
 
-    .footer-left,
-    .footer-right {
-        width: 90%;
+    .footer-left {
+        width: 100%;
         text-align: left;
     }
 
-    .subscribe form {
+    .footer-right {
+        width: 100%;
+    }
+
+    #subscribeForm {
+        display: flex;
         flex-direction: column;
-        width: 120%;
+    }
+
+    #subscribeForm input[type="email"] {
+        width: 200%;
+        padding: 8px 12px;
+    }
+
+    #subscribeForm button {
+        width: 200%;
+        padding: 8px 16px;
     }
 }
 
