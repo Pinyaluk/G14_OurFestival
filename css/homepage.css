@@ -1197,12 +1197,13 @@ body {
     }
 
     .subscribe form {
-        flex-direction: row;
+        flex-direction: column;
+        width: 120%;
     }
 }
 
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (max-width: 768px) {
     .ABOUT {
         flex-direction: row;
         gap: 20px;
@@ -1210,7 +1211,7 @@ body {
     }
 
     .slider1 {
-        width: 600px;
+        width: 100%;
         height: 350px;
         margin-left: 20px;
     }
@@ -1218,6 +1219,12 @@ body {
     .slide img {
         width: 100%;
         height: 100%;
+    }
+
+    .navigation-manual,
+    .navigation-auto {
+        width: 90%;
+        margin-top: 10px;
     }
 
     .about-text h2 {
@@ -1258,7 +1265,6 @@ body {
 
     .footer-left,
     .footer-right {
-        width: 48%;
         text-align: left;
     }
 
