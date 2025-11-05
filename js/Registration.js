@@ -9,25 +9,59 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
   const terms = document.getElementById("terms").checked;
   const errorMessage = document.getElementById("errorMessage");
 
- 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  errorMessage.textContent = ""; 
 
-  if (!firstName || !lastName || !email || !age || !gender || !terms) {
-    errorMessage.textContent = "⚠️ Please fill in all fields and accept the terms.";
+  
+  if (!firstName) {
+    errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ First name cannot be empty.";
+    return;
+  }
+
+  if (!lastName) {
+   errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ Last name cannot be empty.";
+    return;
+  }
+
+  if (!email) {
+   errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ Email address is required.";
     return;
   }
 
   if (!emailPattern.test(email)) {
-    errorMessage.textContent = "⚠️ Please enter a valid email address.";
+    errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ Please enter a valid email address (e.g. example@mail.com).";
     return;
   }
 
-  if (age < 1 || age > 100) {
-    errorMessage.textContent = "⚠️ Please enter a valid age between 1 and 100.";
+  if (!age) {
+    errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ Please enter your age.";
     return;
   }
 
-  // สร้าง object สำหรับเก็บข้อมูล
+  if (isNaN(age) || age < 1 || age > 100) {
+    errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ Age must be a number between 1 and 100.";
+    return;
+  }
+
+  if (!gender) {
+    errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ Please select your gender.";
+    return;
+  }
+
+  if (!terms) {
+    errorMessage.className = "error";
+    errorMessage.textContent = "⚠️ You must accept the terms before registering.";
+    return;
+  }
+
+
   const userData = {
     firstName,
     lastName,
@@ -36,34 +70,17 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     gender: gender.value
   };
 
-  // ดึงข้อมูลเดิมจาก localStorage ถ้ามี
+
   const users = JSON.parse(localStorage.getItem("registrations")) || [];
   users.push(userData);
 
-  // เก็บกลับลง localStorage
   localStorage.setItem("registrations", JSON.stringify(users));
 
-  errorMessage.textContent = "";
-
-
-  const notice = document.createElement("div");
-notice.textContent = "Registration successful! ";
-notice.style.position = "fixed";
-notice.style.top = "20px";
-notice.style.left = "50%";
-notice.style.transform = "translateX(-50%)";
-notice.style.background = "#4caf50";
-notice.style.color = "white";
-notice.style.padding = "10px 20px";
-notice.style.borderRadius = "8px";
-notice.style.fontWeight = "600";
-notice.style.zIndex = "9999";
-document.body.appendChild(notice);
-
-
-setTimeout(() => {
-  notice.remove();
-  window.location.href = "../html/regis_summary.html";
-}, 1000);
   
+  errorMessage.className = "success";
+  errorMessage.textContent = "✅ Registration successful! Redirecting...";
+
+  setTimeout(() => {
+    window.location.href = "../html/regis_summary.html";
+  }, 1200);
 });

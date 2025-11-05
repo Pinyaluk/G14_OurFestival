@@ -61,10 +61,18 @@ label-center {
   font-size: 0.95rem;
 }
 
-#eerrorMessage {
-  color: #d9534f;
-  font-weight: 500;
-  margin-top: 15px;
+#errorMessage {
+  margin-top: 10px;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+#errorMessage.error {
+  color: red;
+}
+
+#errorMessage.success {
+  color: green;
 }
 
 @media (min-width: 992px) {
