@@ -239,6 +239,24 @@ header.navbar {
 }
 
 
+.cta-btn {
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: none;
+    background-color: #ff9900;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: #ffa733;
+    transform: scale(1.05);
+}
+
+
 /*
 .head .one{
     padding: 1rem;
@@ -826,6 +844,13 @@ body {
 
 .subscribe button:hover {
     background: rgb(23, 23, 119);
+}
+
+.footer-cta-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
 }
 
 @media (max-width: 768px) {
