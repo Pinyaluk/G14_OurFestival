@@ -51,6 +51,6 @@ let m=document.getElementById('message').value.trim()
  a.unshift({n,m,v,ts:Date.now()})
  localStorage.setItem(k,JSON.stringify(a))
 
- window.location.href='../html/index.html#reviewsSection'
+ window.location.href='../index.html#reviewsSection'
 }
 })()
