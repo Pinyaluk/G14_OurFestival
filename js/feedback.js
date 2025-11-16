@@ -51,6 +51,12 @@ let m=document.getElementById('message').value.trim()
  a.unshift({n,m,v,ts:Date.now()})
  localStorage.setItem(k,JSON.stringify(a))
 
- window.location.href='../index.html#reviewsSection'
+ // also send to server
+ fetch('server/submit-feedback.php', {
+   method:'POST', headers:{'Content-Type':'application/json'},
+   body: JSON.stringify({name:n, message:m, rating:v})
+ }).then(r=>r.json()).then(j=>{ if(!j.ok) console.warn('feedback server:', j); }).catch(e=>console.warn('feedback send error',e));
+
+ window.location.href='index.html#reviewsSection'
 }
 })()
