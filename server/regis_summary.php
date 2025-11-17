@@ -63,7 +63,7 @@
 
 
         <?php
-// Read registration.json and output rows
+
 $dataFile = __DIR__ . '/registration.json';
 $rowsHtml = '';
 if (file_exists($dataFile)) {

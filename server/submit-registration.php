@@ -1,18 +1,16 @@
 <?php
-// submit-registration.php
-// Accepts POST (application/x-www-form-urlencoded or JSON) and appends to registration.json
 header('Content-Type: application/json; charset=utf-8');
 
-// Read input
+
 $input = file_get_contents('php://input');
 $data = array();
 
-// Try JSON first
+
 $decoded = json_decode($input, true);
 if (json_last_error() === JSON_ERROR_NONE && is_array($decoded) && count($decoded)>0) {
     $data = $decoded;
 } else {
-    // Fallback to form-encoded
+   
     $data['firstName'] = $_POST['firstName'] ?? '';
     $data['lastName'] = $_POST['lastName'] ?? '';
     $data['email'] = $_POST['email'] ?? '';
@@ -21,7 +19,7 @@ if (json_last_error() === JSON_ERROR_NONE && is_array($decoded) && count($decode
     $data['ts'] = time();
 }
 
-// Basic validation (server-side)
+
 if (empty($data['firstName']) || empty($data['lastName']) || empty($data['email'])) {
     http_response_code(400);
     echo json_encode(['ok'=>false, 'error'=>'Missing required fields']);
@@ -33,15 +31,15 @@ if (!file_exists($path)) {
     file_put_contents($path, json_encode([]));
 }
 
-// Load, append, and save with lock
+
 $fp = fopen($path, 'c+');
 if (flock($fp, LOCK_EX)) {
     $contents = stream_get_contents($fp);
     $arr = json_decode($contents, true);
     if (!is_array($arr)) $arr = [];
-    // Append new item at beginning
+    
     array_unshift($arr, $data);
-    // Truncate and write
+    
     ftruncate($fp, 0);
     rewind($fp);
     fwrite($fp, json_encode($arr, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE));
