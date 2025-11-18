@@ -18,15 +18,15 @@
 
     <nav class="nav-desktop">
       <a href="../index.html#about">ABOUT</a>
-      <a href="boothdirectory.html">BOOTH</a>
+      <a href="../boothdirectory.html">BOOTH</a>
       <a href="../index.html#footer">CONTACT</a>
     </nav>
 
     <div class="desktop-menu-icon" id="desktopMenuIcon">&#9776;</div>
 
     <div class="desktop-dropdown" id="desktopDropdown">
-      <a href="feedback.html">FEEDBACK</a>
-      <a href="html/regis_summary.html">SUMMARY</a>
+      <a href="../feedback.html">FEEDBACK</a>
+      <a href="regis_summary.php">SUMMARY</a>
     </div>
 
 
@@ -34,10 +34,10 @@
 
      <nav class="nav-mobile" id="navMobile">
       <a href="../index.html#about">ABOUT</a>
-      <a href="boothdirectory.html">BOOTH</a>
+      <a href="../boothdirectory.html">BOOTH</a>
       <a href="../index.html#footer">CONTACT</a>
-      <a href="feedback.html">FEEDBACK</a>
-      <a href="regis_summary.html">SUMMARY</a>
+      <a href="../feedback.html">FEEDBACK</a>
+      <a href="regis_summary.php">SUMMARY</a>
     </nav>
 
   </header>
@@ -88,7 +88,7 @@ echo $rowsHtml;
 
     <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
 
-      <a href="boothdirectory.html" class="btn btn-warning w-50 mt-3">GO To Fastival</a>
+      <a href="../boothdirectory.html" class="btn btn-warning w-50 mt-3">GO To Fastival</a>
 
       
       
