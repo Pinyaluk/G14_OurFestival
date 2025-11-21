@@ -17,20 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-
-
-   function startSlider(slider1) {
-    let counter = 1;
-    setInterval(() => {
-      document.querySelector(`.${slider1} #radio` + counter).checked = true;
-      counter++;
-      if (counter > 4) counter = 1;
-    }, 5000);
-  }
-  startSlider("slider1");
-
-  
-
   // ------------------- ตัวแปรรีวิว -------------------
   let reviews = [];
 
@@ -128,42 +114,35 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // ------------------- ปุ่มเลื่อน -------------------
-  function getStep() {
-    const first = trackEl.querySelector(".review-card");
-    if (!first) return 0;
-
-    const gap = parseFloat(getComputedStyle(trackEl).gap || "0");
-    return first.getBoundingClientRect().width + gap;
+ 
+function startSlider(sliderClass) {
+  // รอ DOM ยืนยัน element ของ slider
+  const sliderContainer = document.querySelector(`.${sliderClass}`);
+  if (!sliderContainer) {
+    console.warn('startSlider: container not found for', sliderClass);
+    return;
+  }
+  
+  const radios = sliderContainer.querySelectorAll('.slides1 input[type="radio"][id^="radio"]');
+  if (!radios || radios.length === 0) {
+    console.warn('startSlider: no radios found inside', sliderClass);
+    return;
   }
 
-  function updateArrows() {
-    const canScroll = trackEl.scrollWidth > viewportEl.clientWidth + 1;
+  let idx = 0;
 
-    if (!canScroll) {
-      prevBtn.hidden = true;
-      nextBtn.hidden = true;
-      return;
-    }
+  radios[0].checked = true;
 
-    prevBtn.hidden = viewportEl.scrollLeft <= 0;
+  setInterval(() => {
+    idx = (idx + 1) % radios.length;
+    const id = radios[idx].id;
+    const el = document.getElementById(id);
+    if (el) el.checked = true;
+  }, 5000);
+}
 
-    const maxScroll = trackEl.scrollWidth - viewportEl.clientWidth - 1;
-    nextBtn.hidden = viewportEl.scrollLeft >= maxScroll;
-  }
 
-  prevBtn.addEventListener("click", () => {
-    viewportEl.scrollBy({ left: -getStep(), behavior: "smooth" });
-  });
-
-  nextBtn.addEventListener("click", () => {
-    viewportEl.scrollBy({ left: getStep(), behavior: "smooth" });
-  });
-
-  viewportEl.addEventListener("scroll", () => {
-    window.requestAnimationFrame(updateArrows);
-  });
-
-  window.addEventListener("resize", updateArrows);
+startSlider('slider1');
 
   // ------------------- รันจริง -------------------
   await loadReviewsFromServer();
