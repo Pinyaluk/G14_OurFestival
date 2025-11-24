@@ -137,6 +137,25 @@ function startSlider(sliderClass) {
 
   startSlider('slider1');
 
+
+  // เมนูมือถือ
+  menuIcon.addEventListener('click', () => {
+    navMobile.classList.toggle('active');
+  });
+
+  // เมนู feedback/summary ในคอม
+  desktopMenuIcon.addEventListener('click', (event) => {
+    event.stopPropagation(); // ป้องกันการปิดเมนูทันที
+    desktopDropdown.classList.toggle('show');
+  });
+
+  // คลิกที่อื่นเพื่อปิด dropdown
+  document.addEventListener('click', (event) => {
+    if (!desktopMenuIcon.contains(event.target) && !desktopDropdown.contains(event.target)) {
+      desktopDropdown.classList.remove('show');
+    }
+  });
+
 // ------------------------ เรียกใช้งาน ------------------------
 (async function init() {
   await loadReviewsFromServer();

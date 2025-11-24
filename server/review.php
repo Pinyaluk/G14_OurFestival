@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 $path = __DIR__ . '/feedback.json';
 
 if (!file_exists($path)) {
-    echo '<div id="serverReviewFragment" data-avg="0" data-count="0"><p>No reviews yet.</p></div>';
+    echo '<div id="serverReviewFragment" data-avg="0" data-count="0"><p></p></div>';
     exit;
 }
 
@@ -12,7 +12,7 @@ $json = file_get_contents($path);
 $data = json_decode($json, true);
 
 if (!is_array($data) || count($data) === 0) {
-    echo '<center><div id="serverReviewFragment" data-avg="0" data-count="0"></div></center>';
+    echo '<div id="serverReviewFragment" data-avg="0" data-count="0"></div>';
     exit;
 }
 
