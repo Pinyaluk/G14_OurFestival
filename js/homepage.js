@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const full = Math.floor(score);
     const half = score - full >= 0.5 ? 1 : 0;
     const empty = 5 - full - half;
+    // ใช้ ★ เป็นเต็ม ถ้ามี half แสดง ☆ (แสดงครึ่งแบบง่าย)
     return "★".repeat(full) + (half ? "☆" : "") + "☆".repeat(empty);
   }
 
@@ -110,41 +111,112 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
 
-    updateArrows();
+    // หลังจากสร้าง DOM ของการ์ดแล้ว ให้รีเซ็ตตำแหน่งและอัพเดตปุ่ม
+    viewportEl.scrollLeft = 0;
+    // small timeout ให้ layout คำนวนเสร็จ
+    setTimeout(() => updateArrows(), 50);
   }
 
-  // ------------------- ปุ่มเลื่อน -------------------
- 
-function startSlider(sliderClass) {
-  // รอ DOM ยืนยัน element ของ slider
-  const sliderContainer = document.querySelector(`.${sliderClass}`);
-  if (!sliderContainer) {
-    console.warn('startSlider: container not found for', sliderClass);
-    return;
+  // ------------------- ฟังก์ชันควบคุมปุ่มและการเลื่อน -------------------
+  function getCardWidthIncludingGap() {
+    const card = trackEl.querySelector('.review-card');
+    if (!card) return viewportEl.clientWidth; // fallback
+    const style = window.getComputedStyle(trackEl);
+    
+    const cardWidth = card.getBoundingClientRect().width;
+    // หาก CSS gap ใช้, try to read it (fallback to 16)
+    let gap = 16;
+    try {
+      const gapVal = window.getComputedStyle(trackEl).gap;
+      if (gapVal) {
+        if (gapVal.endsWith('px')) gap = parseFloat(gapVal);
+      }
+    } catch (e) { /* ignore */ }
+    return Math.round(cardWidth + gap);
   }
-  
-  const radios = sliderContainer.querySelectorAll('.slides1 input[type="radio"][id^="radio"]');
-  if (!radios || radios.length === 0) {
-    console.warn('startSlider: no radios found inside', sliderClass);
-    return;
+
+  function scrollNext() {
+    const step = getCardWidthIncludingGap();
+    viewportEl.scrollBy({ left: step, behavior: 'smooth' });
   }
 
-  let idx = 0;
+  function scrollPrev() {
+    const step = getCardWidthIncludingGap();
+    viewportEl.scrollBy({ left: -step, behavior: 'smooth' });
+  }
 
-  radios[0].checked = true;
+  function updateArrows() {
+    if (!prevBtn || !nextBtn) return;
+    // ถ้าไม่มีการ์ด ให้ซ่อนทั้งสอง
+    const anyCard = trackEl.querySelector('.review-card');
+    if (!anyCard) {
+      prevBtn.hidden = true;
+      nextBtn.hidden = true;
+      return;
+    }
 
-  setInterval(() => {
-    idx = (idx + 1) % radios.length;
-    const id = radios[idx].id;
-    const el = document.getElementById(id);
-    if (el) el.checked = true;
-  }, 5000);
-}
+    
+    const maxScroll = trackEl.scrollWidth - viewportEl.clientWidth;
+   
+    const left = viewportEl.scrollLeft;
+    const eps = 2;
 
+    prevBtn.hidden = left <= eps;
+    nextBtn.hidden = left + viewportEl.clientWidth >= trackEl.scrollWidth - eps;
+  }
 
-startSlider('slider1');
+  // ผูก event ให้ปุ่ม
+  function attachCarouselControls() {
+    if (prevBtn) prevBtn.addEventListener('click', scrollPrev);
+    if (nextBtn) nextBtn.addEventListener('click', scrollNext);
+
+    
+    viewportEl.addEventListener('scroll', () => {
+      
+      if (window._reviewScrollRaf) cancelAnimationFrame(window._reviewScrollRaf);
+      window._reviewScrollRaf = requestAnimationFrame(() => {
+        updateArrows();
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      
+      setTimeout(updateArrows, 80);
+    });
+  }
+
+  // ------------------- ปุ่มเลื่อนสำหรับภาพสไลด์ (เดิม) -------------------
+  function startSlider(sliderClass) {
+   
+    const sliderContainer = document.querySelector(`.${sliderClass}`);
+    if (!sliderContainer) {
+      console.warn('startSlider: container not found for', sliderClass);
+      return;
+    }
+    
+    const radios = sliderContainer.querySelectorAll('.slides1 input[type="radio"][id^="radio"]');
+    if (!radios || radios.length === 0) {
+      console.warn('startSlider: no radios found inside', sliderClass);
+      return;
+    }
+
+    let idx = 0;
+
+    radios[0].checked = true;
+
+    setInterval(() => {
+      idx = (idx + 1) % radios.length;
+      const id = radios[idx].id;
+      const el = document.getElementById(id);
+      if (el) el.checked = true;
+    }, 5000);
+  }
+
+  startSlider('slider1');
 
   // ------------------- รันจริง -------------------
   await loadReviewsFromServer();
   render();
+  attachCarouselControls();
+
 });
