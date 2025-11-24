@@ -1,192 +1,115 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-  // ------------------- เมนู -------------------
-  const menuIcon = document.getElementById('menuIcon');
-  const navMobile = document.getElementById('navMobile');
-  const desktopMenuIcon = document.getElementById('desktopMenuIcon');
-  const desktopDropdown = document.getElementById('desktopDropdown');
+  // ------------------------ ตัวแปร DOM หลัก ------------------------
+const trackEl = document.getElementById("reviewTrack");
+const viewportEl = document.getElementById("reviewViewport");
+const avgStarEl = document.getElementById("avgStar");
+const noReviewEl = document.getElementById("noReview");
+const btnLeft = document.getElementById("prevBtn");
+const btnRight = document.getElementById("nextBtn");
 
-  menuIcon.addEventListener('click', () => navMobile.classList.toggle('active'));
-  desktopMenuIcon.addEventListener('click', (e) => {
-    e.stopPropagation();
-    desktopDropdown.classList.toggle('show');
+
+// ------------------------ Carousel ควบคุม ------------------------
+let currentIndex = 0;
+
+function updateArrows() {
+  const cardCount = trackEl.children.length;
+  const cardWidth = trackEl.children[0]?.offsetWidth || 0;
+  const viewportWidth = viewportEl.offsetWidth;
+
+  // จำนวนการ์ดที่เห็นได้ใน viewport
+  const visibleCount = Math.floor(viewportWidth / cardWidth);
+
+  // ปุ่มซ้าย
+  btnLeft.disabled = currentIndex === 0;
+
+  // ปุ่มขวา
+  btnRight.disabled = currentIndex >= cardCount - visibleCount;
+}
+
+function moveLeft() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    const cardWidth = trackEl.children[0]?.offsetWidth || 0;
+    trackEl.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+    updateArrows();
+  }
+}
+
+function moveRight() {
+  const cardCount = trackEl.children.length;
+  const cardWidth = trackEl.children[0]?.offsetWidth || 0;
+  const viewportWidth = viewportEl.offsetWidth;
+
+  const visibleCount = Math.floor(viewportWidth / cardWidth);
+
+  if (currentIndex < cardCount - visibleCount) {
+    currentIndex++;
+    trackEl.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+    updateArrows();
+  }
+}
+
+function attachCarouselControls() {
+  btnLeft.addEventListener("click", moveLeft);
+  btnRight.addEventListener("click", moveRight);
+  window.addEventListener("resize", () => {
+    // reset position
+    currentIndex = 0;
+    trackEl.style.transform = "translateX(0)";
+    updateArrows();
   });
-  document.addEventListener('click', (e) => {
-    if (!desktopMenuIcon.contains(e.target) && !desktopDropdown.contains(e.target)) {
-      desktopDropdown.classList.remove('show');
-    }
-  });
+}
 
-  // ------------------- ตัวแปรรีวิว -------------------
-  let reviews = [];
+// ------------------------ โหลดรีวิวจาก Server ------------------------
+async function loadReviewsFromServer() {
+  try {
+    const res = await fetch("server/review.php", { cache: "no-store" });
+    if (!res.ok) throw new Error("server error");
 
-  const avgStarEl = document.getElementById('avgStar');
-  const noReviewEl = document.getElementById('noReview');
-  const viewportEl = document.getElementById('reviewViewport');
-  const trackEl = document.getElementById('reviewTrack');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
+    const html = await res.text();
 
-  // ------------------- โหลดรีวิวจาก server -------------------
-  async function loadReviewsFromServer() {
-    try {
-      const res = await fetch("server/feedback.json", { cache: "no-store" });
-      const data = await res.json();
+    // สร้าง div ชั่วคราวเพื่อแยก fragment
+    const temp = document.createElement("div");
+    temp.innerHTML = html.trim();
 
-      // feedback.json = [{ name, message, rating }]
-      reviews = data.map(item => ({
-        n: item.name,
-        m: item.message,
-        v: item.rating
-      }));
-
-    } catch (err) {
-      console.error("โหลดรีวิวจาก server ไม่ได้:", err);
-      reviews = [];
-    }
-  }
-
-  // ------------------- ฟังก์ชันช่วย -------------------
-  function buildStars(score) {
-    const full = Math.floor(score);
-    const half = score - full >= 0.5 ? 1 : 0;
-    const empty = 5 - full - half;
-    // ใช้ ★ เป็นเต็ม ถ้ามี half แสดง ☆ (แสดงครึ่งแบบง่าย)
-    return "★".repeat(full) + (half ? "☆" : "") + "☆".repeat(empty);
-  }
-
-  function formatAvg(v) {
-    return (Math.round(v * 10) / 10).toString().replace(/\.0$/, "");
-  }
-
-  // ------------------- แสดงผลรีวิว -------------------
-  function render() {
-    // avg
-    if (reviews.length === 0) {
+    const frag = temp.querySelector("#serverReviewFragment");
+    if (!frag) {
+      trackEl.innerHTML = "";
       avgStarEl.textContent = "0/5";
-    } else {
-      const sum = reviews.reduce((acc, r) => acc + Number(r.v || 0), 0);
-      const avg = sum / reviews.length;
-      avgStarEl.textContent = `${formatAvg(avg)}/5`;
-    }
-
-    // สร้างการ์ด
-    trackEl.innerHTML = "";
-
-    if (reviews.length === 0) {
       noReviewEl.hidden = false;
-    } else {
-      noReviewEl.hidden = true;
-
-      reviews.forEach(r => {
-        const card = document.createElement("div");
-        card.className = "review-card";
-
-        const starRow = document.createElement("div");
-        starRow.className = "review-stars-row";
-
-        const stars = document.createElement("span");
-        stars.className = "stars";
-        stars.textContent = buildStars(Number(r.v || 0));
-
-        const score = document.createElement("span");
-        score.textContent = ` ${r.v}/5`;
-
-        const msg = document.createElement("p");
-        msg.className = "review-message";
-        msg.textContent = r.m;
-
-        const name = document.createElement("div");
-        name.className = "review-name";
-        name.textContent = r.n;
-
-        starRow.appendChild(stars);
-        starRow.appendChild(score);
-
-        card.appendChild(starRow);
-        card.appendChild(msg);
-        card.appendChild(name);
-
-        trackEl.appendChild(card);
-      });
-    }
-
-    // หลังจากสร้าง DOM ของการ์ดแล้ว ให้รีเซ็ตตำแหน่งและอัพเดตปุ่ม
-    viewportEl.scrollLeft = 0;
-    // small timeout ให้ layout คำนวนเสร็จ
-    setTimeout(() => updateArrows(), 50);
-  }
-
-  // ------------------- ฟังก์ชันควบคุมปุ่มและการเลื่อน -------------------
-  function getCardWidthIncludingGap() {
-    const card = trackEl.querySelector('.review-card');
-    if (!card) return viewportEl.clientWidth; // fallback
-    const style = window.getComputedStyle(trackEl);
-    
-    const cardWidth = card.getBoundingClientRect().width;
-    // หาก CSS gap ใช้, try to read it (fallback to 16)
-    let gap = 16;
-    try {
-      const gapVal = window.getComputedStyle(trackEl).gap;
-      if (gapVal) {
-        if (gapVal.endsWith('px')) gap = parseFloat(gapVal);
-      }
-    } catch (e) { /* ignore */ }
-    return Math.round(cardWidth + gap);
-  }
-
-  function scrollNext() {
-    const step = getCardWidthIncludingGap();
-    viewportEl.scrollBy({ left: step, behavior: 'smooth' });
-  }
-
-  function scrollPrev() {
-    const step = getCardWidthIncludingGap();
-    viewportEl.scrollBy({ left: -step, behavior: 'smooth' });
-  }
-
-  function updateArrows() {
-    if (!prevBtn || !nextBtn) return;
-    // ถ้าไม่มีการ์ด ให้ซ่อนทั้งสอง
-    const anyCard = trackEl.querySelector('.review-card');
-    if (!anyCard) {
-      prevBtn.hidden = true;
-      nextBtn.hidden = true;
       return;
     }
 
-    
-    const maxScroll = trackEl.scrollWidth - viewportEl.clientWidth;
-   
-    const left = viewportEl.scrollLeft;
-    const eps = 2;
+    // ใช้เฉพาะเนื้อด้านในของ fragment
+    trackEl.innerHTML = frag.innerHTML;
 
-    prevBtn.hidden = left <= eps;
-    nextBtn.hidden = left + viewportEl.clientWidth >= trackEl.scrollWidth - eps;
+    // อ่านค่า avg / count จาก attribute
+    const avg = parseFloat(frag.getAttribute("data-avg") || "0");
+    const count = parseInt(frag.getAttribute("data-count") || "0", 10);
+
+    if (count === 0) {
+      avgStarEl.textContent = "0/5";
+      noReviewEl.hidden = false;
+    } else {
+      avgStarEl.textContent = `${avg}/5`;
+      noReviewEl.hidden = true;
+    }
+
+    // reset position / arrows
+    currentIndex = 0;
+    trackEl.style.transform = "translateX(0)";
+    updateArrows();
+
+  } catch (err) {
+    console.error("โหลดรีวิวจาก server ไม่ได้:", err);
+    trackEl.innerHTML = "";
+    avgStarEl.textContent = "0/5";
+    noReviewEl.hidden = false;
   }
+}
 
-  // ผูก event ให้ปุ่ม
-  function attachCarouselControls() {
-    if (prevBtn) prevBtn.addEventListener('click', scrollPrev);
-    if (nextBtn) nextBtn.addEventListener('click', scrollNext);
-
-    
-    viewportEl.addEventListener('scroll', () => {
-      
-      if (window._reviewScrollRaf) cancelAnimationFrame(window._reviewScrollRaf);
-      window._reviewScrollRaf = requestAnimationFrame(() => {
-        updateArrows();
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      
-      setTimeout(updateArrows, 80);
-    });
-  }
-
-  // ------------------- ปุ่มเลื่อนสำหรับภาพสไลด์ (เดิม) -------------------
-  function startSlider(sliderClass) {
+function startSlider(sliderClass) {
    
     const sliderContainer = document.querySelector(`.${sliderClass}`);
     if (!sliderContainer) {
@@ -214,9 +137,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   startSlider('slider1');
 
-  // ------------------- รันจริง -------------------
+// ------------------------ เรียกใช้งาน ------------------------
+(async function init() {
   await loadReviewsFromServer();
-  render();
   attachCarouselControls();
+})();
 
 });
