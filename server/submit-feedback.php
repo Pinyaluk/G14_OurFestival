@@ -4,7 +4,7 @@ header('Content-Type: application/json; charset=utf-8');
 $input = file_get_contents('php://input');
 $data = array();
 
-// กรณี JSON เช่นจาก Android
+
 $decoded = json_decode($input, true);
 if (json_last_error() === JSON_ERROR_NONE && is_array($decoded) && count($decoded)>0) {
     $data = $decoded;

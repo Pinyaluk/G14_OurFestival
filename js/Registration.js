@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorMessage = document.getElementById('errorMessage');
   const submitBtn = form.querySelector('button[type="submit"]');
 
-  // same validation messages / rules as original
+
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function showError(msg){
