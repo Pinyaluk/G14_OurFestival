@@ -449,7 +449,7 @@ header.navbar {
   display: flex;
   flex-wrap: nowrap;
   gap: 16px;
-  padding-bottom: 1rem;
+  padding-bottom: 0.4rem !important;
 }
 
 
@@ -458,7 +458,7 @@ header.navbar {
   background: #fff;
   border-radius: 12px;
   border: 1px solid #ddd;
-  box-shadow: 0 16px 32px rgba(0,0,0,.06);
+  box-shadow: 0 16px 12px rgba(0,0,0,.04) !important;
   padding: 16px 18px 14px 18px;
   text-align: left;
   font-size: 0.9rem;
