@@ -112,39 +112,6 @@ body {
 
 
 
-@media (max-width: 1024px) {
-  .container {
-    max-width: 95%;
-    padding: 20px;
-  }
-
-  .cards {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-
-  .store-header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .store-img {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-@media (max-width: 768px) {
-  .cards {
-    grid-template-columns: 1fr 1fr; 
-  }
-}
-
-@media (max-width: 480px) {
-  .cards {
-    grid-template-columns: 1fr; 
-  }
-}
 
 
 
@@ -159,7 +126,7 @@ header.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50vw;
+    padding: 15px 20vw;
     position: relative;
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -326,47 +293,74 @@ header.navbar {
 
 @media (max-width: 1024px) {
 
-    .nav-desktop,
-    .desktop-menu-icon {
-        display: none;
-    }
-    .menu-icon {
-        display: block;
-    }
+ 
+  .nav-desktop,
+  .desktop-menu-icon {
+      display: none !important;
+  }
+  .menu-icon {
+      display: block !important;
+  }
 
+  
+  .store-header {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .store-img {
+      width: 100px;
+      height: 100px;
+  }
+
+  .container {
+      max-width: 95%;
+      padding: 20px;
+  }
+
+  .cards {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+  }
 }
+
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 28px;
-    }
-    .hero {
-        height: 80vh
-    }
+  .cards {
+      grid-template-columns: 1fr 1fr;
+  }
 }
 
+
 @media (max-width: 480px) {
-    .logo {
-        font-size: 26px;
-    }
-    h1 {
-        font-size: 24px;
-    }
-    .navbar {
-        padding: 15px 20px;
-    }
-    .hero {
-        height: 75vh
-    }
-    .hero-content h1 {
-        font-size: 55px;
-    }
-    .hero-content p {
-        font-size: 20px;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-    .hero-content button {
-        font-size: 15px;
-    }
+
+  
+  .navbar {
+      padding: 15px 20px !important;
+  }
+
+  .logo {
+      font-size: 26px;
+  }
+
+  .cards {
+      grid-template-columns: 1fr !important;
+  }
+
+  
+  .card img {
+      height: 150px;
+  }
+
+  .container {
+      padding: 15px;
+      margin: 20px auto;
+  }
+}
+
+
+@media (min-width: 1025px) {
+  .navbar {
+      padding: 20px 80px;
+  }
 }
